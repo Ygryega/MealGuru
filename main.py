@@ -41,18 +41,8 @@ def get_information_from_chatgpt(web_content):
 
 @app.post("/message")
 async def reply(Body: str = Form(), db: Session = Depends(get_db)):
-    # Call the OpenAI API to generate text with GPT-3.5
-    response = openai.Completion.create(
-        engine="text-davinci-002",
-        prompt=Body,
-        max_tokens=200,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
-
     # The generated text
-    chat_response = response.choices[0].text.strip()
+    chat_response = get_information_from_chatgpt(Body)
 
     # Store the conversation in the database
     try:
