@@ -13,7 +13,7 @@ def whatsapp_reply():
     resp = MessagingResponse()
     msg = resp.message()
     
-    # Your AI chatbot logic here
+    # Your bot logic here
     if 'hello' in incoming_msg:
         response = 'Hi there! How can I help you today?'
     else:
