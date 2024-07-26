@@ -3,4 +3,4 @@ services:
     name: MealGuru
     env: python
     buildCommand: ""
-    startCommand: "python app.py"
+    startCommand: "uvicorn main:app --reload"

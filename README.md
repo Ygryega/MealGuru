@@ -1,24 +1,40 @@
 # MealGuru
 AI chatbot specalized in resturants 
+===================================
 
--1 Getting started with PostgreSQL (Windows CMD)
+Getting started with PostgreSQL (Windows CMD)
+```bash
     psql -U postgres
+```
+``` bash
     createdb mydb
+```
+```bash
     \c mydb
+```
+```bash
     GRANT ALL PRIVILEGES ON DATABASE mydb to mydb;
-    - to troubleshoot (
-        >>>import psycopg2
-        >>>psycopg2.connect("dbname=postgres user=postgres host=localhost password=oracle port=5432")
-    )
+```
+Troubleshoot tips 
+```bash
+    >>>import psycopg2
+```
+```bash
+    >>>psycopg2.connect("dbname=postgres user=postgres host=localhost password=oracle port=5432")
+```
 
--2 To test localy 
+To test localy 
+```bash
     uvicorn main:app --reload
+```
 
--3 Test with Ngrok
+Test with Ngrok
+```bash
     ngrok http 8000
+```
 
 Userfull links:
-    https://www.twilio.com/en-us/blog/ai-chatbot-whatsapp-python-twilio-openai
-    https://stackoverflow.com/questions/69934467/error-while-using-createdb-command-postgresql-on-windows-10
-    https://stackoverflow.com/questions/48999379/psycopg2-operationalerror-fatal-password-authentication-failed-for-user-my-u
-    https://stackoverflow.com/questions/60138692/sqlalchemy-psycopg2-errors-insufficientprivilege-permission-denied-for-relation
+    [Inspiration](https://www.twilio.com/en-us/blog/ai-chatbot-whatsapp-python-twilio-openai)
+    [Troubleshhoting](https://stackoverflow.com/questions/69934467/error-while-using-createdb-command-postgresql-on-windows-10)
+    [Troubleshhoting](https://stackoverflow.com/questions/48999379/psycopg2-operationalerror-fatal-password-authentication-failed-for-user-my-u)
+    [Troubleshooting](https://stackoverflow.com/questions/60138692/sqlalchemy-psycopg2-errors-insufficientprivilege-permission-denied-for-relation)
