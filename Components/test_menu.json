@@ -1,0 +1,64 @@
+{
+    "restaurant": {
+      "name": "Gourmet Bistro",
+      "address": "123 Culinary Lane, Foodie City, FC 12345",
+      "phone": "+1234567890",
+      "specifics":{
+        "hours": "Mon-Sat: 11am-9pm, Sun: 12pm-8pm",
+        "reservations": "Reservations recommended, walk-ins welcome.",
+        "cuisine": "Modern American",
+        "atmosphere": "Casual fine dining",
+        "inclusivities": "Vegan, vegetarian and gluten-free options available and we are dog friendly."
+      },
+      "menu": {
+        "appetizers": [
+          {
+            "name": "Bruschetta",
+            "description": "Grilled bread topped with diced tomatoes, garlic, and basil.",
+            "price": 8.99
+          },
+          {
+            "name": "Stuffed Mushrooms",
+            "description": "Mushrooms filled with a savory cheese and herb mixture.",
+            "price": 10.99
+          }
+        ],
+        "main_courses": [
+          {
+            "name": "Grilled Salmon",
+            "description": "Fresh salmon fillet grilled to perfection, served with a lemon butter sauce.",
+            "price": 18.99
+          },
+          {
+            "name": "Ribeye Steak",
+            "description": "Juicy ribeye steak cooked to your liking, served with garlic mashed potatoes.",
+            "price": 24.99
+          }
+        ],
+        "desserts": [
+          {
+            "name": "Cheesecake",
+            "description": "Creamy cheesecake with a graham cracker crust, topped with fresh strawberries.",
+            "price": 7.99
+          },
+          {
+            "name": "Chocolate Lava Cake",
+            "description": "Warm chocolate cake with a gooey molten center, served with vanilla ice cream.",
+            "price": 8.99
+          }
+        ],
+        "beverages": [
+          {
+            "name": "Coffee",
+            "description": "Freshly brewed coffee.",
+            "price": 2.99
+          },
+          {
+            "name": "Lemonade",
+            "description": "Refreshing homemade lemonade.",
+            "price": 3.99
+          }
+        ]
+      }
+    }
+  }
