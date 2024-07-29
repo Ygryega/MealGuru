@@ -1,15 +1,16 @@
 # Third-party imports
 import json
 import openai
+import re
 from fastapi import FastAPI, Form, Depends
 from decouple import config
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 # Internal imports
+import response_model
 from models import Conversation, SessionLocal
 from utils import send_message, logger
-
 
 app = FastAPI()
 # Set up the OpenAI API client
@@ -28,13 +29,19 @@ def get_db():
 def read_json_file(file_path):
     with open(file_path, 'r') as file:
         return json.load(file)
+    
+def extract_phone_number(whatsapp_string):
+    match = re.search(r'#whatsapp:(\+\d+)', whatsapp_string)
+    if match:
+        return match.group(1)
+    return None
 
 def get_information_from_chatgpt(question_string, json_reference):
 
     # Convert the JSON reference to a string
     json_reference_str = json.dumps(json_reference, indent=2)
 
-    question_str = "Answer any quations only with information inside of the following json never go off topic if there is no answer to the question pelitly decline can you also give the answer in bullet points please" + json_reference_str + "The following is the question made by the user" + question_string
+    question_str = response_model.format_beggning + json_reference_str + response_model.format_greeting + response_model.format_order +response_model.format_ending+ "The following is the question made by the user" + question_string
 
     stream = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -54,6 +61,7 @@ def get_information_from_chatgpt(question_string, json_reference):
 
 @app.post("/webook")
 async def reply(Body: str = Form(), From: str = Form(), db: Session = Depends(get_db)):
+    logger.info(f"The sender number #{From.replace("whatsapp:", "")} ")
         # Read the JSON reference from the file
     json_reference = read_json_file('Components/test_menu.json')
 
@@ -73,5 +81,5 @@ async def reply(Body: str = Form(), From: str = Form(), db: Session = Depends(ge
     except SQLAlchemyError as e:
         db.rollback()
         logger.error(f"Error storing conversation in database: {e}")
-    send_message(whatsapp_number, chat_response)
+    send_message(From.replace("whatsapp:", ""), chat_response)
     return ""
