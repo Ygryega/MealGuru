@@ -17,6 +17,7 @@ app = FastAPI()
 openai.api_key = config("OPENAI_API_KEY")
 whatsapp_number = config("TO_NUMBER")
 
+
 # Dependency
 def get_db():
     try:
@@ -41,7 +42,9 @@ def get_information_from_chatgpt(question_string, json_reference):
     # Convert the JSON reference to a string
     json_reference_str = json.dumps(json_reference, indent=2)
 
-    question_str = response_model.format_beggning + json_reference_str + response_model.format_greeting + response_model.format_order +response_model.format_ending+ "The following is the question made by the user" + question_string
+    question_format = response_model.format_beggning + response_model.format_order_food + json_reference_str + response_model.format_specific_food + response_model.format_reserve_table  +response_model.format_greeting +response_model.format_ending + response_model.language_format_response;
+
+    question_str = question_format + "The following is the question made by the user" + question_string
 
     stream = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -61,6 +64,7 @@ def get_information_from_chatgpt(question_string, json_reference):
 
 @app.post("/webook")
 async def reply(Body: str = Form(), From: str = Form(), db: Session = Depends(get_db)):
+
     logger.info(f"The sender number #{From.replace("whatsapp:", "")} ")
         # Read the JSON reference from the file
     json_reference = read_json_file('Components/test_menu.json')

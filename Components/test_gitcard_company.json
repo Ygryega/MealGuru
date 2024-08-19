@@ -1,0 +1,41 @@
+{
+    "gift_card_company": {
+        "name": "GiftCard Solutions",
+        "address": "456 Gift Lane, Card City, CC 67890",
+        "phone": "+1987654321",
+        "specifics": {
+            "hours": "Mon-Fri: 9am-6pm, Sat: 10am-4pm, Sun: Closed",
+            "services": "Custom gift card creation, bulk orders, and branding services.",
+            "industries_served": "Retail, hospitality, e-commerce, and more.",
+            "customization_options": "Custom designs, variable amounts, and personalized messages.",
+            "delivery_methods": "Physical cards, e-cards, and mobile wallet integration.",
+            "support": "24/7 customer support and dedicated account managers."
+        },
+        "products": {
+            "gift_cards": [
+                {
+                    "name": "Standard Gift Card",
+                    "description": "A versatile gift card that can be customized with your company's branding.",
+                    "price": "Variable based on order size and customization options."
+                },
+                {
+                    "name": "E-Gift Card",
+                    "description": "A digital gift card that can be sent via email or SMS, with instant delivery.",
+                    "price": "Variable based on order size and customization options."
+                }
+            ],
+            "additional_services": [
+                {
+                    "name": "Custom Design Service",
+                    "description": "Work with our design team to create a unique gift card design that reflects your brand.",
+                    "price": "Starting at $50 per design."
+                },
+                {
+                    "name": "Bulk Order Discounts",
+                    "description": "Receive discounts on large orders of gift cards.",
+                    "price": "Contact us for a quote based on order size."
+                }
+            ]
+        }
+    }
+}
