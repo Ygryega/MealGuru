@@ -9,6 +9,8 @@ from sqlalchemy.orm import Session
 
 # Internal imports
 import response_model
+import Components.respone_model_lindabay as responseLindabay
+import Components.retrieve_conversations as RetriveConversation
 from models import Conversation, SessionLocal
 from utils import send_message, logger
 
@@ -16,7 +18,6 @@ app = FastAPI()
 # Set up the OpenAI API client
 openai.api_key = config("OPENAI_API_KEY")
 whatsapp_number = config("TO_NUMBER")
-
 
 # Dependency
 def get_db():
@@ -37,14 +38,17 @@ def extract_phone_number(whatsapp_string):
         return match.group(1)
     return None
 
-def get_information_from_chatgpt(question_string, json_reference):
+def get_information_from_chatgpt(question_string, json_reference, json_chat_history):
 
     # Convert the JSON reference to a string
     json_reference_str = json.dumps(json_reference, indent=2)
 
-    question_format = response_model.format_beggning + response_model.format_order_food + json_reference_str + response_model.format_specific_food + response_model.format_reserve_table  +response_model.format_greeting +response_model.format_ending + response_model.language_format_response;
+    #question_format = responseLindabay.format_beggning;
 
-    question_str = question_format + "The following is the question made by the user" + question_string
+    temp_json = read_json_file("Components/reglas_output.json")
+    question_format = json.dumps(temp_json, indent=2)
+
+    question_str = "These are your instrutions on how to answer questions" + question_format + "The following is all of the data at your disposal about the hotel only answer in a nice message human format"+ json_reference_str +"The following is the question made by the user" + question_string 
 
     stream = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -65,12 +69,13 @@ def get_information_from_chatgpt(question_string, json_reference):
 @app.post("/webook")
 async def reply(Body: str = Form(), From: str = Form(), db: Session = Depends(get_db)):
 
-    logger.info(f"The sender number #{From.replace("whatsapp:", "")} ")
+    logger.info(f"The sender number {From.replace("whatsapp:", "")} ")
         # Read the JSON reference from the file
-    json_reference = read_json_file('Components/test_menu.json')
+    json_reference = read_json_file('Components/output.json')
 
+    conversations_json = RetriveConversation.retrieve_conversations(From.replace("whatsapp:", ""));
     # The generated text
-    chat_response = get_information_from_chatgpt(Body, json_reference)
+    chat_response = get_information_from_chatgpt(Body, json_reference, conversations_json)
 
     # Store the conversation in the database
     try:

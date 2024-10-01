@@ -1,0 +1,17 @@
+[
+    {
+        "REGLAS BOT":1,
+        "Cliente":"Si un posible cliente env\u00eda \"hola\" o algun saludo similar debes responder siempre",
+        "Respuesta":"Hola, gracias por comunicarse con Linda Bay Beach & Resort. Para poder avanzar con su reserva, por favor ind\u00edquenos su direcci\u00f3n de e-mail, las fechas en las que le gustar\u00eda hospedarse, y la cantidad de pasajeros. Quedamos a su disposici\u00f3n para cualquier consulta adicional."
+    },
+    {
+        "REGLAS BOT":2,
+        "Cliente":"Si un posible cliente env\u00eda \"info\" o algun saludo similar debes responder siempre",
+        "Respuesta":"Hola, gracias por comunicarse con Linda Bay Beach & Resort. Para poder avanzar con su reserva, por favor ind\u00edquenos su direcci\u00f3n de e-mail, las fechas en las que le gustar\u00eda hospedarse, y la cantidad de pasajeros. Quedamos a su disposici\u00f3n para cualquier consulta adicional."
+    },
+    {
+        "REGLAS BOT":3,
+        "Cliente":"Si un posible cliente env\u00eda \"disponibilidad\" o algun saludo similar debes responder siempre",
+        "Respuesta":"Hola, gracias por comunicarse con Linda Bay Beach & Resort. Para poder avanzar con su reserva, por favor ind\u00edquenos su direcci\u00f3n de e-mail, las fechas en las que le gustar\u00eda hospedarse, y la cantidad de pasajeros. Quedamos a su disposici\u00f3n para cualquier consulta adicional."
+    }
+]
